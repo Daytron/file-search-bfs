@@ -19,7 +19,7 @@ ask_path = True
 ask_file = True
 
 
-# Class declaration
+# Class declaration for folder objects
 class Folder:
     def __init__(self,path,name,index):
         self.path = path
@@ -37,7 +37,8 @@ def startSearch():
     displayTitle()
 
     while True:
-        Tk().withdraw() # Skip the full GUI window, keeping the root window from appearing
+        # Skip the full GUI window, keeping the root window pane from appearing
+        Tk().withdraw() 
 
         while ask_path == True: 
             path = askdirectory(initialdir = 'x:\\',title='Please select a directory to search', mustexist = True) # show an "Open" dialog box and return the path to the selected file
@@ -47,7 +48,7 @@ def startSearch():
                     return None # Exits the program, if user selected "y" or "yes"
             else:
                 ask_path = False    
-        
+        # Asks for user input for string matching
         while ask_file == True:
             file_to_search = raw_input("Enter a file to search (file extension optional): ")
             if not file_to_search:
@@ -55,8 +56,8 @@ def startSearch():
             else:
                 ask_file = False
 
+        # Function calls
         file_to_search = analyseFileToSearch(file_to_search)
-             
         initialNode = generateNodes(path)
         breadthFirstSearch(initialNode)
         
@@ -68,7 +69,7 @@ def startSearch():
         else:
             resetVar()
 
-
+# Resets global variables
 def resetVar():
     global nodes, isWithExt,ask_path, ask_file
 
@@ -86,7 +87,9 @@ def displayTitle():
     print "Date: 03 March 2014\n"
     print "**************************************************************\n"
 
-
+# Detects if the string input has a file extension included,
+# if not, it formats the string input as as "<string>.*"
+# It sets the filename to search for any file types that shares the same name
 def analyseFileToSearch(filename):
     global isWithExt
     
@@ -148,7 +151,7 @@ def generateNodes(directory):
     
     return begin
 
-
+# Parses folder names from the list
 def getFolderName(fname):
     element = 0
     for indx, z in enumerate(fname):
@@ -240,7 +243,7 @@ def breadthFirstSearch(start):
     else:
         print "No such file exist. Sorry."
 
-
+# Searches for the file in a particular node/folder
 def find_file(filename, directory):
     search_result = []
     filename = fnmatch.filter(os.listdir(os.path.abspath(directory)), filename)
