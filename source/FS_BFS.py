@@ -186,8 +186,8 @@ def breadthFirstSearch(start):
         print "file_result", file_result
         result.append(pointer)
         print "children:", pointer.children
+        
         for neighbor in pointer.children:
-
             in_queue_result = False
             for obj in queue:
                 # Prints "neighbor:", neighbor+1, "queue:", i.index+1
@@ -210,13 +210,11 @@ def breadthFirstSearch(start):
         print "queue: ",
         for q in queue:
             print q.index,                  
-        
         print " "
         
         print "result: ",
         for r in result:
             print r.index,                  
-        
         print " \n\n"
         
         
