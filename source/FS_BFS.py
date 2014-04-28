@@ -244,8 +244,11 @@ def breadthFirstSearch(start):
 # Searches for the file in a particular node/folder
 def find_file(filename, directory):
     search_result = []
+    
+    # Searches for the file inside a praticular folder and all matches are save to a list
     filename = fnmatch.filter(os.listdir(os.path.abspath(directory)), filename)
 
+    # All save matches are concatinated with their corresponding path address
     for fn in filename:
         search_result.append(os.path.join(directory, fn))
     
